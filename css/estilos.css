@@ -20,3 +20,20 @@ th{
     background-color: #343a40;
     color: white;
 }
+
+.etiqueta{
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    font-size: 13px;
+}
+
+.agotado { background-color: #f8d7da; } /* Rojo claro */
+.bajo-stock { background-color: #fff3cd; } /* Amarillo claro */
+.disponible { background-color: #d4edda; } /* Verde claro */
+
+#resumen {
+    margin-top: 20px; padding: 12px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+}
