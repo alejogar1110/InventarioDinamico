@@ -67,8 +67,10 @@ function mostrarInventario() {
         }
         // Cantidad y mínimo
         const tdCantidad = document.createElement("td");
-        // Botón de menos const btnMenos = document.createElement("button");
-        btnMenos.textContent = "−"; btnMenos.classList.add("btn", "btn-menos");
+        // Botón de menos
+        const btnMenos = document.createElement("button");
+        btnMenos.textContent = "−";
+        btnMenos.classList.add("btn", "btn-menos");
 
         if (producto.cantidad === 0) {
             btnMenos.disabled = true; // No se puede bajar de 0
@@ -130,8 +132,8 @@ function mostrarInventario() {
         fila.appendChild(tdCategoria);
         fila.appendChild(tdPrecio);
         fila.appendChild(tdCantidad);
-        fila.appendChild(tdMinimo);
-        fila.appendChild(tdSubtotal);
+        //fila.appendChild(tdMinimo);
+        //fila.appendChild(tdSubtotal);
         fila.appendChild(tdEstado);
         cuerpoTabla.appendChild(fila);
     }
