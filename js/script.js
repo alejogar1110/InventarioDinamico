@@ -22,6 +22,9 @@ let totalAgotados = 0;
 let totalBajoStock = 0;
 let unidadesAPedir = 0;
 let valorInventario = 0;
+let mayorSubtotal = -1; // Empieza en -1 para que cualquier subtotal sea mayor
+let filaMayor = null; // La fila del producto ganador
+let nombreMayor = ""; // Su nombre
 
 for (let i = 0; i < productos.length; i++){
     const producto = productos[i];
@@ -88,6 +91,11 @@ for (let i = 0; i < productos.length; i++){
         tdEstado.textContent = "OK";
     }
     valorInventario += subtotal; // Fuera del if: se suma para TODOS
+    if (subtotal > mayorSubtotal){
+        mayorSubtotal = subtotal;
+        filaMayor = fila;
+        nombreMayor = producto.nombre;
+    }
 
     // Armar la fila en el mismo orden de los encabezados
     fila.appendChild(tdNombre);
@@ -100,6 +108,10 @@ for (let i = 0; i < productos.length; i++){
     cuerpoTabla.appendChild(fila);
 }
 
+filaMayor.classList.add("destacado");
+const pMayor = document.createElement("p");
+pMayor.textContent = "Producto con mayor valor: " + nombreMayor + " ($" + mayorSubtotal.toLocaleString("es-CO") + ")";
+
 const pAgotados = document.createElement("p");
 pAgotados.textContent = "Productos agotados: " + totalAgotados;
 const pBajo = document.createElement("p"); pBajo.textContent = "Productos con bajo stock: " + totalBajoStock;
@@ -111,3 +123,4 @@ resumen.appendChild(pAgotados);
 resumen.appendChild(pBajo);
 resumen.appendChild(pPedir);
 resumen.appendChild(pValor);
+resumen.appendChild(pMayor);
