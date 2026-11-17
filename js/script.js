@@ -67,14 +67,36 @@ function mostrarInventario() {
         }
         // Cantidad y mínimo
         const tdCantidad = document.createElement("td");
-        tdCantidad.textContent = producto.cantidad;
+        // Botón de menos const btnMenos = document.createElement("button");
+        btnMenos.textContent = "−"; btnMenos.classList.add("btn", "btn-menos");
 
-        const tdMinimo = document.createElement("td");
-        tdMinimo.textContent = producto.minimo;
+        if (producto.cantidad === 0) {
+            btnMenos.disabled = true; // No se puede bajar de 0
+        }
 
-        // Subtotal
-        const tdSubtotal = document.createElement("td");
-        tdSubtotal.textContent = "$" + subtotal.toLocaleString("es-CO");
+        btnMenos.addEventListener("click", function () {
+            if (productos[i].cantidad > 0) {
+                productos[i].cantidad--; // Cambia el dato
+                mostrarInventario(); // Redibuja todo
+            } });
+            
+        // Número de la cantidad
+        const numero = document.createElement("span");
+        numero.textContent = producto.cantidad;
+        numero.classList.add("numero");
+        
+        // Botón de más
+        const btnMas = document.createElement("button");
+        btnMas.textContent = "+";
+        btnMas.classList.add("btn", "btn-mas");
+        btnMas.addEventListener("click", function () {
+            productos[i].cantidad++; mostrarInventario();
+        });
+        
+        // Resultado en la celda: [−] 5 [+]
+        tdCantidad.appendChild(btnMenos);
+        tdCantidad.appendChild(numero);
+        tdCantidad.appendChild(btnMas);
 
         // Estado
         const tdEstado = document.createElement("td");
